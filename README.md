@@ -8,6 +8,8 @@ Pre-bundled Arduino IDE for STEM Du
 - Including I2CLiquidCrystal library
   - http://n.mtng.org/ele/arduino/i2c.html
 
+Current packege is based on Arduino IDE v.1.0.5. You can find original from http://arduino.cc/en/Main/Software
+
 Windows
 * http://www.stem-edulab.org/uploads/arduino-1.0.5-r2-stemdu07.zip 
 
