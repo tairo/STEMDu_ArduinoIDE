@@ -3,6 +3,7 @@ STEMDu_ArduinoIDE
 
 Pre-bundled Arduino IDE for STEM Du
 - Including STEM Du hardware profiles (boards.txt, variant and bootloader)
+- Including windows CDC USB driver file (only windows package)
 - Including Ardublock tool
   - https://github.com/tairo/STEMDu_Ardublock
 - Including I2CLiquidCrystal library
