@@ -17,4 +17,4 @@ Windows
 MacOSX
 * http://www.stem-edulab.org/uploads/Arduino_0105_for_STEM_Du_08.zip
 
-You can find pre-bundled additional files from https://github.com/tairo/STEMDu
+You can find pre-bundled additional files separately from https://github.com/tairo/STEMDu
