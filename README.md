@@ -8,6 +8,8 @@ Pre-bundled Arduino IDE for STEM Du
   - https://github.com/tairo/STEMDu_Ardublock
 - Including I2CLiquidCrystal library
   - http://n.mtng.org/ele/arduino/i2c.html
+- Including U8glib libray
+  - http://code.google.com/p/u8glib/
 
 Current packege is based on Arduino IDE v.1.0.5. You can find original from http://arduino.cc/en/Main/Software
 
