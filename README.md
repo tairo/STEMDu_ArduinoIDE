@@ -12,9 +12,13 @@ Pre-bundled Arduino IDE for STEM Du
 Current packege is based on Arduino IDE v.1.0.5. You can find original from http://arduino.cc/en/Main/Software
 
 Windows
-* http://www.stem-edulab.org/uploads/arduino-1.0.5-r2-stemdu10.zip 
+* http://www.stem-edulab.org/uploads/arduino-1.0.5-r2-stemdu11.zip 
 
 MacOSX
-* http://www.stem-edulab.org/uploads/Arduino_0105_for_STEM_Du_09.zip
+* http://www.stem-edulab.org/uploads/Arduino_0105_for_STEM_Du_11.zip
 
-You can find pre-bundled additional files separately from https://github.com/tairo/STEMDu
+You can also find pre-bundled additional files separately from https://github.com/tairo/STEMDu
+
+HISTORY
+-------
+- v11: Add U8glib library for SPI Graphic LCD (R3)
