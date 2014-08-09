@@ -21,4 +21,4 @@ You can also find pre-bundled additional files separately from https://github.co
 
 HISTORY
 -------
-- v11: Add U8glib library for SPI Graphic LCD (R3)
+- v11 2014/8/8 Add U8glib library for SPI Graphic LCD (R3)
