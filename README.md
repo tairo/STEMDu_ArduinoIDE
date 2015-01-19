@@ -15,6 +15,10 @@ Current packege is based on Arduino IDE v.1.0.5. You can find original from http
 
 Windows
 * http://www.stem-edulab.org/uploads/arduino-1.0.5-r2-stemdu12.zip 
+You need to install the device driver in the folder /drivers. To install on Windows 8/8.1 you have to do in the special way i.e next link.
+
+How to Disable Driver Signature Verification on 64-Bit Windows 8.1?
+http://mywindows8.org/disable-driver-signature-verification-on-64-bit-windows-8-1/
 
 MacOSX
 * http://www.stem-edulab.org/uploads/Arduino_0105_for_STEM_Du_12.zip
