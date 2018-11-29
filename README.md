@@ -20,7 +20,7 @@ Windows
 	How to Disable Driver Signature Verification on 64-Bit Windows 8.1? http://mywindows8.org/disable-driver-signature-verification-on-64-bit-windows-8-1/
 
 MacOSX
-* http://www.stem-edulab.org/uploads/Arduino_1_8_5_for_STEM_Du_18.zip
+* http://www.stem-edulab.org/uploads/Arduino_1_8_5_STEM_Du_18.zip
 
 You can also find pre-bundled additional files separately from https://github.com/tairo/STEMDu
 
