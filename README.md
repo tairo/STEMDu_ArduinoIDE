@@ -14,6 +14,7 @@ Pre-bundled Arduino IDE for STEM Du
 Current packege is based on Arduino IDE v.1.6.10. You can find original from http://arduino.cc/en/Main/Software
 
 Windows
+* http://www.stem-edulab.org/uploads/arduino-1.8.9-win-stemdu18.zip
 * http://www.stem-edulab.org/uploads/arduino-1.6.10-win-stemdu18.zip
 * You need to install the device driver in the folder /drivers. To install on Windows 8/8.1 you have to do in the special way i.e next link.
 
