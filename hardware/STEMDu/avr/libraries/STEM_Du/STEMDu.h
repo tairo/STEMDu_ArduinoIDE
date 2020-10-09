@@ -3,8 +3,9 @@
 //
 // STEM Du 102/103/104/ESP32 Library Header File
 //
-// Update:Jan 4, 2020 9:53
+// Update:Oct 10, 2020 7:47
 //
+// 2.0 20201009 : Officially Support ESP32
 // 1.0 20191227 : Add experimental support of ESP32
 //
 
@@ -36,6 +37,7 @@
 #define RDC_PP2_R1		2021
 #define RDC_PP2_R2		2022
 #define RDC_PP2_R3		2023
+#define RDC_PP2_R4		2024
 // RDC-ESP32
 #define RDC_ESP32		3000
 #define RDC_ESP32_R1	3001
@@ -46,6 +48,8 @@
 #else
 #include "WProgram.h"
 #endif
+
+#include "pitches.h"
 
 ////////////////////////////////////////////////////////
 
@@ -322,6 +326,21 @@ public:
   int readResistanceB();
   int readResistanceC();
   int readResistanceD();
+
+#if STEMDU > RDC_ESP32
+  void noTone(int pin);
+  void tone(int pin, int freq);
+  void tone(int pin, int freq, int duration);
+
+  void analogWrite12(int val);
+  void analogWrite13(int val);
+  void analogWrite14(int val);
+  void analogWrite18(int val);
+  void analogWrite19(int val);
+  void analogWrite25(int val);
+  void analogWrite26(int val);
+  void analogWrite27(int val);
+#endif
 
 #if defined(HAS_MPU6050)
   float readTemperature();

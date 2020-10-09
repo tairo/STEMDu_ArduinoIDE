@@ -17,7 +17,7 @@
 
 #include <STEMDu.h>
 
-#if STEMDU > RDC_ESP32_R2
+#if STEMDU > RDC_ESP32
 // CHANNEL USE
 #define LEDC_CHANNEL_MOTOR1 0
 #define LEDC_CHANNEL_MOTOR2 1
@@ -41,11 +41,14 @@
 #define LEDC_CHANNEL_A27 11
 #define LEDC_CHANNEL_IRLED 12
 #define LEDC_CHANNEL_LED 13
+#define LEDC_CHANNEL_TONE 14
 
 #define LEDC_TIMER_BIT_MOTOR 13
 #define LEDC_BASE_FREQ_MOTOR 4900
 #define LEDC_TIMER_BIT_SERVO 10
-#define LEDC_BASE_FREQ_SERVO 
+#define LEDC_BASE_FREQ_SERVO 50
+#define LEDC_TIMER_BIT_TONE  13
+#define LEDC_BASE_FREQ_TONE  5000
 
 void ledcAnalogWrite(uint8_t channel, uint32_t value, uint32_t valueMax = 255) {
   // calculate duty, 8191 from 2 ^ 13 - 1
@@ -54,6 +57,7 @@ void ledcAnalogWrite(uint8_t channel, uint32_t value, uint32_t valueMax = 255) {
   // write duty to LEDC
   ledcWrite(channel, duty);
 }
+
 #endif
 
 STEMDu::STEMDu(){
@@ -70,10 +74,12 @@ void STEMDu::init(){
 	pinMode(P_M2IN1,OUTPUT);
 	pinMode(P_M2IN2,OUTPUT);
 #if STEMDU > RDC_ESP32
+/*
   	ledcSetup(LEDC_CHANNEL_MOTOR1,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
   	ledcSetup(LEDC_CHANNEL_MOTOR2,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
   	ledcAttachPin(P_M1PWM,LEDC_CHANNEL_MOTOR1);
 	ledcAttachPin(P_M2PWM,LEDC_CHANNEL_MOTOR2);
+*/
 #endif
 
 #if defined(HAS_MOTOR34)
@@ -83,10 +89,12 @@ void STEMDu::init(){
 	pinMode(P_M4IN2,OUTPUT);
 	
 #if STEMDU > RDC_ESP32
+/*
   	ledcSetup(LEDC_CHANNEL_MOTOR3,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
   	ledcSetup(LEDC_CHANNEL_MOTOR4,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
 	ledcAttachPin(P_M3PWM,LEDC_CHANNEL_MOTOR3);
 	ledcAttachPin(P_M4PWM,LEDC_CHANNEL_MOTOR4);
+*/
 #endif
 #endif
 	
@@ -103,12 +111,14 @@ void STEMDu::init(){
 
 #if defined(HAS_ONBBOARD_DISTANCE)
     pinMode(P_IRLED,OUTPUT);
-#if STEMDU <= RDC_ESP32
-  	ledcSetup(LEDC_CHANNEL_MOTOR4,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
-	ledcAttachPin(P_M3PWM,LEDC_CHANNEL_MOTOR3);
+#if STEMDU < RDC_ESP32
 	analogWrite(P_IRLED,0);
 #else
+/*
+  	ledcSetup(LEDC_CHANNEL_IRLED,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+	ledcAttachPin(P_IRLED,LEDC_CHANNEL_IRLED);
 	ledcAnalogWrite(LEDC_CHANNEL_IRLED, 0);
+*/
 #endif
 #endif
 
@@ -144,6 +154,8 @@ void STEMDu::motor(int n, int speed){
 #if STEMDU < RDC_ESP32
 			analogWrite(P_M1PWM, speed);
 #else
+  			ledcSetup(LEDC_CHANNEL_MOTOR1,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+  			ledcAttachPin(P_M1PWM,LEDC_CHANNEL_MOTOR1);
 			ledcAnalogWrite(LEDC_CHANNEL_MOTOR1, speed);
 #endif
 			break;
@@ -153,6 +165,8 @@ void STEMDu::motor(int n, int speed){
 #if STEMDU < RDC_ESP32
 			analogWrite(P_M2PWM, speed);
 #else
+  			ledcSetup(LEDC_CHANNEL_MOTOR2,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+			ledcAttachPin(P_M2PWM,LEDC_CHANNEL_MOTOR2);
 			ledcAnalogWrite(LEDC_CHANNEL_MOTOR2, speed);
 #endif
 			break;
@@ -162,6 +176,8 @@ void STEMDu::motor(int n, int speed){
 #if STEMDU < RDC_ESP32
 			analogWrite(P_M3PWM, speed);
 #else
+  			ledcSetup(LEDC_CHANNEL_MOTOR3,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+			ledcAttachPin(P_M3PWM,LEDC_CHANNEL_MOTOR3);
 			ledcAnalogWrite(LEDC_CHANNEL_MOTOR3, speed);
 #endif
 			break;
@@ -171,6 +187,8 @@ void STEMDu::motor(int n, int speed){
 #if STEMDU < RDC_ESP32
 			analogWrite(P_M4PWM, speed);
 #else
+  			ledcSetup(LEDC_CHANNEL_MOTOR4,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+			ledcAttachPin(P_M4PWM,LEDC_CHANNEL_MOTOR4);
 			ledcAnalogWrite(LEDC_CHANNEL_MOTOR4, speed);
 #endif
 			break;
@@ -408,6 +426,72 @@ int STEMDu::readResistanceC(){
 int STEMDu::readResistanceD(){
 	return analogRead(P_RESISTD);
 }
+
+#if STEMDU > RDC_ESP32
+void STEMDu::noTone(int pin){
+  ledcWriteTone(LEDC_CHANNEL_TONE, 0.0);
+}
+ 
+void STEMDu::tone(int pin, int freq){
+  ledcSetup(LEDC_CHANNEL_TONE, LEDC_BASE_FREQ_TONE, LEDC_TIMER_BIT_TONE);
+  ledcAttachPin(pin, LEDC_CHANNEL_TONE);
+  ledcWriteTone(LEDC_CHANNEL_TONE, freq);
+}
+
+void STEMDu::tone(int pin, int freq, int duration){
+  tone(pin, freq);
+  delay(duration);
+}
+
+void STEMDu::analogWrite12(int val){
+  ledcSetup(LEDC_CHANNEL_A12, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(12, LEDC_CHANNEL_A12);
+  ledcAnalogWrite(LEDC_CHANNEL_A12, val);
+}
+
+void STEMDu::analogWrite13(int val){
+  ledcSetup(LEDC_CHANNEL_A13, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(13, LEDC_CHANNEL_A13);
+  ledcAnalogWrite(LEDC_CHANNEL_A13, val);
+}
+
+void STEMDu::analogWrite14(int val){
+  ledcSetup(LEDC_CHANNEL_A14, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(14, LEDC_CHANNEL_A14);
+  ledcAnalogWrite(LEDC_CHANNEL_A14, val);
+}
+
+void STEMDu::analogWrite18(int val){
+  ledcSetup(LEDC_CHANNEL_A18, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(18, LEDC_CHANNEL_A18);
+  ledcAnalogWrite(LEDC_CHANNEL_A18, val);
+}
+
+void STEMDu::analogWrite19(int val){
+  ledcSetup(LEDC_CHANNEL_A19, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(19, LEDC_CHANNEL_A19);
+  ledcAnalogWrite(LEDC_CHANNEL_A19, val);
+}
+
+void STEMDu::analogWrite25(int val){
+  ledcSetup(LEDC_CHANNEL_A25, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(25, LEDC_CHANNEL_A25);
+  ledcAnalogWrite(LEDC_CHANNEL_A25, val);
+}
+
+void STEMDu::analogWrite26(int val){
+  ledcSetup(LEDC_CHANNEL_A26, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(26, LEDC_CHANNEL_A26);
+  ledcAnalogWrite(LEDC_CHANNEL_A26, val);
+}
+
+void STEMDu::analogWrite27(int val){
+  ledcSetup(LEDC_CHANNEL_A27, LEDC_BASE_FREQ_MOTOR, LEDC_TIMER_BIT_MOTOR);
+  ledcAttachPin(27, LEDC_CHANNEL_A27);
+  ledcAnalogWrite(LEDC_CHANNEL_A27, val);
+}
+
+#endif
 
 #if defined(HAS_ONBBOARD_DISTANCE)
 void STEMDu::initBuiltinDistance(){
