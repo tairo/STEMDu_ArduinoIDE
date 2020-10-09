@@ -1,11 +1,15 @@
+//
+// STEMDu.h
+//
+// STEM Du 102/103/104/ESP32 Library Header File
+//
+// Update:Jan 4, 2020 9:53
+//
+// 1.0 20191227 : Add experimental support of ESP32
+//
+
 #ifndef STEM_Du_h
 #define STEM_Du_h
-
-#if ARDUINO >= 100
-#include "Arduino.h"
-#else
-#include "WProgram.h"
-#endif
 
 #define NANOBOARD_AG     990
 #define CHIBIDUINO       991
@@ -25,6 +29,23 @@
 #define RDC_104         1040
 #define RDC_104_R1      1041
 #define RDC_104_R2      1042
+// PencilProgrammer
+#define RDC_PP328		2000 //5bit 328
+#define RDC_PP			2010 //5bit 32U4
+#define RDC_PP2			2020 //4bit 32U4
+#define RDC_PP2_R1		2021
+#define RDC_PP2_R2		2022
+#define RDC_PP2_R3		2023
+// RDC-ESP32
+#define RDC_ESP32		3000
+#define RDC_ESP32_R1	3001
+#define RDC_ESP32_R2	3002
+
+#if ARDUINO >= 100
+#include "Arduino.h"
+#else
+#include "WProgram.h"
+#endif
 
 ////////////////////////////////////////////////////////
 
@@ -34,22 +55,23 @@
 
 #if STEMDU <= RDC_102_R3
 
-#define HAS_I2C_LCD 4
+#define HAS_I2C_LCD 4 // I2C LCD 8x2
 #define HAS_PHREF 5
 #define HAS_TWL 6
 
 #else //RDC_103 or upper
 
 #define HAS_ONBBOARD_DISTANCE 9
+#define HAS_MPU6050 8
 
 #if STEMDU >= RDC_104
 
 #define HAS_I2C_LCD 4
-#define HAS_MPU6050 8
+#undef HAS_MPU6050
 
 #else
 
-#define HAS_SPI_LCD 7
+#define HAS_SPI_LCD 7 // SPI Graphic 128x64
 #define HAS_MPU6050 8
 
 #endif // STEMDU >= RDC_104
@@ -123,12 +145,21 @@
 #define P_M2IN2 8
 #define P_M2PWM 9
 #else
+#if STEMDU < RDC_ESP32
 #define P_M1IN1 4
 #define P_M1IN2 9
 #define P_M1PWM 6
 #define P_M2IN1 7
 #define P_M2IN2 8
 #define P_M2PWM 5
+#else
+#define P_M1IN1 2
+#define P_M1IN2 4
+#define P_M1PWM 5
+#define P_M2IN1 15
+#define P_M2IN2 16
+#define P_M2PWM 17
+#endif
 #endif
 #if STEMDU == JRTA_1
 // Only JRTA-1
@@ -147,39 +178,64 @@
 #define P_M4IN2 12
 #define P_M4PWM 13
 #else
+#if STEMDU < RDC_ESP32
 #define P_M3IN1 0
 #define P_M3IN2 1
 #define P_M3PWM 11
 #define P_M4IN1 10
 #define P_M4IN2 12
 #define P_M4PWM 13
+#else
+#define P_M3IN1 12
+#define P_M3IN2 13
+#define P_M3PWM 14
+#define P_M4IN1 25
+#define P_M4IN2 26
+#define P_M4PWM 27
+#endif
 #endif
 #endif
 #endif
 
 ////////////////////////////////////////////////////////
 
+#if STEMDU < RDC_ESP32
 #define P_PUSH   12
 #define P_LED    13
+#else
+#define P_PUSH   18
+#define P_LED    19
+#endif
 
 #if STEMDU < RDC_104
-#define P_SOUND  0
-#define P_LIGHT  4
-#define P_SLIDER 5
+#define P_SOUND  A0
+#define P_LIGHT  A4
+#define P_SLIDER A5
 
-#define P_RESISTA 0
-#define P_RESISTB 1
-#define P_RESISTC 2
-#define P_RESISTD 3
+#define P_RESISTA A0
+#define P_RESISTB A1
+#define P_RESISTC A2
+#define P_RESISTD A3
 #else
-#define P_SOUND  4
-#define P_LIGHT  2
-#define P_SLIDER 3
+#if STEMDU < RDC_ESP32
+#define P_SOUND  A4
+#define P_LIGHT  A2
+#define P_SLIDER A3
 
-#define P_RESISTA 0
-#define P_RESISTB 1
-#define P_RESISTC 5 //pull up
-#define P_RESISTD 3 //dummy
+#define P_RESISTA A0
+#define P_RESISTB A1
+#define P_RESISTC A5 //pull up
+#define P_RESISTD A3 //dummy
+#else
+#define P_SOUND  A5
+#define P_LIGHT  A6
+#define P_SLIDER A7
+
+#define P_RESISTA A6 //dummy
+#define P_RESISTB A7 //dummy
+#define P_RESISTC A4 //pull up
+#define P_RESISTD A5 //dummy
+#endif
 #endif
 
 ////////////////////////////////////////////////////////

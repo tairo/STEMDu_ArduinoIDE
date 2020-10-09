@@ -1,3 +1,14 @@
+//
+// STEMDu.cpp
+//
+// STEM Du 102/103/104/ESP32 Library
+//
+// Update:Oct 9, 2020 16:10
+//
+// 2.0 20201009 : Officially Support ESP32
+// 1.0 20191227 : Add experimental support of ESP32
+//
+
 #if ARDUINO >= 100
 #include "Arduino.h"
 #else
@@ -6,8 +17,47 @@
 
 #include <STEMDu.h>
 
+#if STEMDU > RDC_ESP32_R2
+// CHANNEL USE
+#define LEDC_CHANNEL_MOTOR1 0
+#define LEDC_CHANNEL_MOTOR2 1
+#define LEDC_CHANNEL_MOTOR3 2
+#define LEDC_CHANNEL_MOTOR4 3
+#define LEDC_CHANNEL_SERVO1 4
+#define LEDC_CHANNEL_SERVO2 5
+#define LEDC_CHANNEL_SERVO3 6
+#define LEDC_CHANNEL_SERVO4 7
+#define LEDC_CHANNEL_SERVO5 8
+#define LEDC_CHANNEL_SERVO6 9
+#define LEDC_CHANNEL_SERVO7 10
+#define LEDC_CHANNEL_SERVO8 11
+#define LEDC_CHANNEL_A12 4
+#define LEDC_CHANNEL_A13 5
+#define LEDC_CHANNEL_A14 6
+#define LEDC_CHANNEL_A18 7
+#define LEDC_CHANNEL_A19 8
+#define LEDC_CHANNEL_A25 9
+#define LEDC_CHANNEL_A26 10
+#define LEDC_CHANNEL_A27 11
+#define LEDC_CHANNEL_IRLED 12
+#define LEDC_CHANNEL_LED 13
+
+#define LEDC_TIMER_BIT_MOTOR 13
+#define LEDC_BASE_FREQ_MOTOR 4900
+#define LEDC_TIMER_BIT_SERVO 10
+#define LEDC_BASE_FREQ_SERVO 
+
+void ledcAnalogWrite(uint8_t channel, uint32_t value, uint32_t valueMax = 255) {
+  // calculate duty, 8191 from 2 ^ 13 - 1
+  uint32_t duty = (8191 / valueMax) * min(value, valueMax);
+
+  // write duty to LEDC
+  ledcWrite(channel, duty);
+}
+#endif
+
 STEMDu::STEMDu(){
-	//this->init();
+	this->init();
 }
 
 void STEMDu::init(){
@@ -19,12 +69,25 @@ void STEMDu::init(){
 	pinMode(P_M1IN2,OUTPUT);
 	pinMode(P_M2IN1,OUTPUT);
 	pinMode(P_M2IN2,OUTPUT);
+#if STEMDU > RDC_ESP32
+  	ledcSetup(LEDC_CHANNEL_MOTOR1,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+  	ledcSetup(LEDC_CHANNEL_MOTOR2,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+  	ledcAttachPin(P_M1PWM,LEDC_CHANNEL_MOTOR1);
+	ledcAttachPin(P_M2PWM,LEDC_CHANNEL_MOTOR2);
+#endif
 
 #if defined(HAS_MOTOR34)
 	pinMode(P_M3IN1,OUTPUT);
 	pinMode(P_M3IN2,OUTPUT);
 	pinMode(P_M4IN1,OUTPUT);
 	pinMode(P_M4IN2,OUTPUT);
+	
+#if STEMDU > RDC_ESP32
+  	ledcSetup(LEDC_CHANNEL_MOTOR3,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+  	ledcSetup(LEDC_CHANNEL_MOTOR4,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+	ledcAttachPin(P_M3PWM,LEDC_CHANNEL_MOTOR3);
+	ledcAttachPin(P_M4PWM,LEDC_CHANNEL_MOTOR4);
+#endif
 #endif
 	
 #if defined(HAS_PHREF)
@@ -40,7 +103,13 @@ void STEMDu::init(){
 
 #if defined(HAS_ONBBOARD_DISTANCE)
     pinMode(P_IRLED,OUTPUT);
+#if STEMDU <= RDC_ESP32
+  	ledcSetup(LEDC_CHANNEL_MOTOR4,LEDC_BASE_FREQ_MOTOR,LEDC_TIMER_BIT_MOTOR);
+	ledcAttachPin(P_M3PWM,LEDC_CHANNEL_MOTOR3);
 	analogWrite(P_IRLED,0);
+#else
+	ledcAnalogWrite(LEDC_CHANNEL_IRLED, 0);
+#endif
 #endif
 
 #if defined(HAS_MPU6050)
@@ -72,22 +141,38 @@ void STEMDu::motor(int n, int speed){
 		case 1:
     		digitalWrite(P_M1IN1, in1);
   			digitalWrite(P_M1IN2, in2);
+#if STEMDU < RDC_ESP32
 			analogWrite(P_M1PWM, speed);
+#else
+			ledcAnalogWrite(LEDC_CHANNEL_MOTOR1, speed);
+#endif
 			break;
 		case 2:
     		digitalWrite(P_M2IN1, in1);
 		    digitalWrite(P_M2IN2, in2);
+#if STEMDU < RDC_ESP32
 			analogWrite(P_M2PWM, speed);
+#else
+			ledcAnalogWrite(LEDC_CHANNEL_MOTOR2, speed);
+#endif
 			break;
 		case 3:
 		    digitalWrite(P_M3IN1, in1);
 		    digitalWrite(P_M3IN2, in2);
+#if STEMDU < RDC_ESP32
 			analogWrite(P_M3PWM, speed);
+#else
+			ledcAnalogWrite(LEDC_CHANNEL_MOTOR3, speed);
+#endif
 			break;
 		case 4:
 		    digitalWrite(P_M4IN1, in1);
 		    digitalWrite(P_M4IN2, in2);
+#if STEMDU < RDC_ESP32
 			analogWrite(P_M4PWM, speed);
+#else
+			ledcAnalogWrite(LEDC_CHANNEL_MOTOR4, speed);
+#endif
 			break;
 		default:
 			/* error */
@@ -326,7 +411,7 @@ int STEMDu::readResistanceD(){
 
 #if defined(HAS_ONBBOARD_DISTANCE)
 void STEMDu::initBuiltinDistance(){
-  analogWrite(P_IRLED,BUILTIN_DISTANCE_PWM);
+  //analogWrite(P_IRLED,BUILTIN_DISTANCE_PWM);
 
   this->initBuiltinDistanceNoBuffer();
 }
@@ -411,7 +496,7 @@ double STEMDu::readBuiltinDistance(){
 
 double STEMDu::readBuiltinDistanceNoBuffer(){
   buffer_index = 0;
-  analogWrite(P_IRLED,BUILTIN_DISTANCE_PWM);
+  //analogWrite(P_IRLED,BUILTIN_DISTANCE_PWM);
 
   for(buffer_index=0;buffer_index<BUILTIN_DISTANCE_BUFFER_SIZE;buffer_index++){
     buf[ buffer_index ] = (double)analogRead(P_LIGHT);
@@ -434,7 +519,7 @@ double STEMDu::readBuiltinDistanceNoBuffer(){
   buffer_index = 0;  
   buffer_full = false;
 
-  analogWrite(P_IRLED,0);
+  //analogWrite(P_IRLED,0);
 
   return output;
 }
@@ -566,6 +651,8 @@ void STEMDu::led(bool val){
 	digitalWrite(P_LED, val);
 }
 
+#if STEMDU < RDC_ESP32
 void STEMDu::led(int val){
 	analogWrite(P_LED, val);
 }
+#endif
