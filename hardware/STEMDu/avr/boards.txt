@@ -1,6 +1,6 @@
 ##############################################################
 
-STEMDu32U4.name=STEM Du/RoboDesigner+ RDC-102/103 w/ ATmega32U4 3.3V 8MHz
+STEMDu32U4.name=STEM Du RDC-102/103 w/ ATmega32U4 3.3V 8MHz
 STEMDu32U4.vid.0=0x16D0
 STEMDu32U4.pid.0=0x0987
 STEMDu32U4.vid.1=0x16D0
@@ -36,7 +36,7 @@ STEMDu32U4.build.extra_flags={build.usb_flags}
 
 ##############################################################
 
-STEMDu32U4103R4.name=STEM Du/RoboDesigner+ RDC-103R4 w/ ATmega32U4 3.3V 8MHz
+STEMDu32U4103R4.name=STEM Du RDC-103R4 w/ ATmega32U4 3.3V 8MHz
 STEMDu32U4103R4.vid.0=0x16D0
 STEMDu32U4103R4.pid.0=0x0987
 STEMDu32U4103R4.vid.1=0x16D0
@@ -72,7 +72,7 @@ STEMDu32U4103R4.build.extra_flags={build.usb_flags}
 
 ##############################################################
 
-STEMDu32U4104.name=STEM Du/RoboDesigner+ RDC-104 w/ ATmega32U4 3.3V 8MHz
+STEMDu32U4104.name=STEM Du RDC-104 w/ ATmega32U4 3.3V 8MHz
 STEMDu32U4104.vid.0=0x16D0
 STEMDu32U4104.pid.0=0x0987
 STEMDu32U4104.vid.1=0x16D0
