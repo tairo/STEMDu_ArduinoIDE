@@ -18,8 +18,7 @@ class Sprite {
     int x;
     int y;
     bool isShow;
-    Sprite(int x, int y, )
-
+    Sprite(int x, int y, bool isShow);
 }
 
 #endif
