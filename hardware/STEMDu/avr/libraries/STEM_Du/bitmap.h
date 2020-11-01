@@ -4,7 +4,7 @@
 
 static const uint8_t PROGMEM
     //smile
-    bmp1[] =
+    bmp[5][8] = {
     { B00111100,
       B01000010,
       B10100101,
@@ -14,7 +14,6 @@ static const uint8_t PROGMEM
       B01000010,
       B00111100 },
     //normal
-    bmp2[] =
     { B00111100,
       B01000010,
       B10100101,
@@ -24,7 +23,6 @@ static const uint8_t PROGMEM
       B01000010,
       B00111100 },
     //frown
-    bmp3[] =
     { B00111100,
       B01000010,
       B10100101,
@@ -34,7 +32,6 @@ static const uint8_t PROGMEM
       B01000010,
       B00111100 },
     //heart1
-    bmp4[] =
     { B00000000,
       B01100110,
       B11111111,
@@ -44,7 +41,6 @@ static const uint8_t PROGMEM
       B00111100,
       B00011000 },
     //heart2
-    bmp5[] =
     { B00000000,
       B00000000,
       B00100100,
@@ -52,4 +48,5 @@ static const uint8_t PROGMEM
       B01111110,
       B00111100,
       B00011000,
-      B00000000 };
+      B00000000 }
+    };
