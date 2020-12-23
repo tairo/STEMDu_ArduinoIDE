@@ -72,6 +72,18 @@ bool Sprite::isShow(){
     return _isShow;
 }
 
+void Sprite::setShow(bool flag){
+    _isShow = flag;
+}
+
+void Sprite::show(){
+    _isShow = true;
+}
+
+void Sprite::hide(){
+    _isShow = false;
+}
+    
 int Sprite::width(){
     return _width;
 }

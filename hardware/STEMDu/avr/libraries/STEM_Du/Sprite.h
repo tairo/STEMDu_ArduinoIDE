@@ -38,6 +38,9 @@ public:
     int x();
     int y();
     bool isShow();
+    void setShow(bool flag);
+    void show();
+    void hide();
     int width();
     int height();
     int direction();

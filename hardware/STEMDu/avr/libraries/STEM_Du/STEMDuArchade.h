@@ -24,7 +24,20 @@ class STEMDuArchade : public Adafruit_SSD1306 {
     SpriteManager _spm;
 public:
     STEMDuArchade();
+    void addSprite(Sprite *sp);
     void drawSprites();
+    void moveSpriteXY(int spid, int x, int y);
+    void moveSpriteX(int spid, int x);
+    void moveSpriteY(int spid, int y);
+    bool isShow(int spid);
+    void setShow(int spid, bool flag);
+    void show(int spid);
+    void hide(int spid);
+    int width(int spid);
+    int height(int spid);
+    int direction(int spid);
+    bool isCollideTo(int spid1, int spid2);
+    bool isCollideAny(int spid);
 };
 
 #endif
