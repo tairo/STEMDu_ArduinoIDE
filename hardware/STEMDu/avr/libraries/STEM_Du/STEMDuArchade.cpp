@@ -5,22 +5,18 @@ STEMDuArchade::STEMDuArchade(){
 }
 
 void STEMDuArchade::addSprite(Sprite *sp){
-    _spm.addSprite(sp);
+    this->_spm.addSprite(sp);
 }
 
 void STEMDuArchade::drawSprites(){
-    for(int i=0;i<_spm.spriteNumber();i++){
-        Sprite tmp = _spm.sprite(i);
+    for(int i=0;i<this->_spm.spriteNumber();i++){
+        Sprite tmp = this->_spm.sprite(i);
         this->drawBitmap(tmp.x(), tmp.y(), bmp[tmp.bitmapNumber()], SPRITE_WIDTH, SPRITE_HEIGHT, SSD1306_WHITE);
     }
 }
 
-void STEMDuArchade::addSprite(Sprite *sp){
-    _spm.addSprite(sp);
-}
-
 void STEMDuArchade::moveSpriteXY(int spid, int x, int y){
-    Sprite tmp = _smp.sprite(spid);
+    Sprite tmp = this->_spm.sprite(spid);
     tmp.move(x,y);
 }
 

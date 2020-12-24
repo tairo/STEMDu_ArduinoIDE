@@ -160,9 +160,15 @@
 #define P_M1IN1 2
 #define P_M1IN2 4
 #define P_M1PWM 5
+#if STEMDU > RDC_ESP32_R1
+#define P_M2IN1 25
+#define P_M2IN2 26
+#define P_M2PWM 27
+#else
 #define P_M2IN1 15
 #define P_M2IN2 16
 #define P_M2PWM 17
+#endif
 #endif
 #endif
 #if STEMDU == JRTA_1
@@ -193,9 +199,15 @@
 #define P_M3IN1 12
 #define P_M3IN2 13
 #define P_M3PWM 14
+#if STEMDU > RDC_ESP32_R1
+#define P_M4IN1 15
+#define P_M4IN2 16
+#define P_M4PWM 17
+#else
 #define P_M4IN1 25
 #define P_M4IN2 26
 #define P_M4PWM 27
+#endif
 #endif
 #endif
 #endif
@@ -249,7 +261,11 @@ public:
   STEMDu();
 
   void init();
-  
+
+#if defined(HAS_ONBBOARD_DISTANCE)
+  void initOnboardDistancePort();
+#endif
+
   //Motor
   void motor(int n, int speed);
 
@@ -328,18 +344,28 @@ public:
   int readResistanceD();
 
 #if STEMDU > RDC_ESP32
+  void initLEDPortAsAnalog();
+
   void noTone(int pin);
   void tone(int pin, int freq);
   void tone(int pin, int freq, int duration);
 
+  void analogWriteM1PWM(int val);
+  void analogWriteM2PWM(int val);
+  void analogWriteM3PWM(int val);
+  void analogWriteM4PWM(int val);
+
+  void analogWrite5(int val); //M1 PWM
+  void analogWrite17(int val); //M2 PWM
+  
   void analogWrite12(int val);
   void analogWrite13(int val);
-  void analogWrite14(int val);
+  void analogWrite14(int val); //M3 PWM
   void analogWrite18(int val);
   void analogWrite19(int val);
   void analogWrite25(int val);
   void analogWrite26(int val);
-  void analogWrite27(int val);
+  void analogWrite27(int val); //M4 PWM
 #endif
 
 #if defined(HAS_MPU6050)

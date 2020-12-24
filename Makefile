@@ -22,6 +22,10 @@ install:
 	cd hardware/;tar cvf - . | (cd ~tairo/Documents/Arduino/hardware;tar xvf -)
 	cd ~tairo/Documents/Arduino/hardware/STEMDu;cp -r avr/libraries/* esp32/libraries/
 
+install-stemdulib:
+	cd hardware/STEMDu/avr/libraries/;cp -r STEM_Du ~tairo/Documents/Arduino/hardware/STEMDu/avr/libraries/
+	cd hardware/STEMDu/avr/libraries/;cp -r STEM_Du ~tairo/Documents/Arduino/hardware/STEMDu/esp32/libraries/
+
 removeall:
 	cd $(DSTHARDWARE);$(RM) STEMDu
 
