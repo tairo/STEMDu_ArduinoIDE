@@ -1,6 +1,6 @@
 .PHONY: install-tools install removeall install-core-lib remove-core-lib
 
-RM=rm -f
+RM=rm -rf
 
 CORELIB=STEM_Du
 
@@ -13,7 +13,7 @@ DSTLIBS=$(DSTHARDWARE)/STEMDu/avr/libraries
 
 DSTLIBS_ESP32=$(DSTHARDWARE)/STEMDu/esp32/libraries
 
-install-tools:
+install-all:
 	cd hardware/;tar cvf - . | (cd ~tairo/Documents/Arduino/hardware;tar xvf -)
 	cd ~tairo/Documents/Arduino/hardware/STEMDu;cp -r avr/libraries/* esp32/libraries/
 	cd ~tairo/Documents/Arduino/hardware/STEMDu/esp32/tools/;python get.py
