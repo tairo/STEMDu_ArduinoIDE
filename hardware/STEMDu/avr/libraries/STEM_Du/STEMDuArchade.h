@@ -18,6 +18,7 @@
 #include <SpriteManager.h>
 #include <Sprite.h>
 
+<<<<<<< Updated upstream
 #include "bitmap.h"
 
 class STEMDuArchade : public Adafruit_SSD1306 {
@@ -39,5 +40,14 @@ public:
     bool isCollideTo(int spid1, int spid2);
     bool isCollideAny(int spid);
 };
+=======
+class Sprite {
+    public:
+    int x;
+    int y;
+    bool isShow;
+    Sprite(int x, int y, bool isShow);
+}
+>>>>>>> Stashed changes
 
 #endif
