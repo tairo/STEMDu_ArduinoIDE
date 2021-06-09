@@ -1,0 +1,27 @@
+#######################################
+# Syntax Coloring Map For skI2CLCDlib
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+skI2CLCDlib	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+Init	KEYWORD2
+Clear	KEYWORD2
+SetCursor	KEYWORD2
+Putc	KEYWORD2
+Puts	KEYWORD2
+CreateChar	KEYWORD2
+IconOnOff	KEYWORD2
+IconClear	KEYWORD2
+Contrast	KEYWORD2
+PageSet	KEYWORD2
+PageNowNo	KEYWORD2
+PageSetCursor	KEYWORD2
+PageClear	KEYWORD2
+

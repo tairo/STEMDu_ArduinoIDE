@@ -73,11 +73,15 @@ public:
 
     bool verify(WiFiClient& client, const char* host) override
     {
-         WiFiClientSecure& wcs = static_cast<WiFiClientSecure&>(client);
-         wcs.setCACert(_cacert);
-         wcs.setCertificate(_clicert);
-         wcs.setPrivateKey(_clikey);
-         return true;
+        WiFiClientSecure& wcs = static_cast<WiFiClientSecure&>(client);
+        if (_cacert == nullptr) {
+            wcs.setInsecure();
+        } else {
+            wcs.setCACert(_cacert);
+            wcs.setCertificate(_clicert);
+            wcs.setPrivateKey(_clikey);
+        }
+        return true;
     }
 
 protected:
@@ -104,6 +108,12 @@ HTTPClient::~HTTPClient()
     }
     if(_currentHeaders) {
         delete[] _currentHeaders;
+    }
+    if(_tcpDeprecated) {
+        _tcpDeprecated.reset(nullptr);
+    }
+    if(_transportTraits) {
+        _transportTraits.reset(nullptr);
     }
 }
 
@@ -265,15 +275,22 @@ bool HTTPClient::beginInternal(String url, const char* expectedProtocol)
 
     // get port
     index = host.indexOf(':');
+    String the_host;
     if(index >= 0) {
-        _host = host.substring(0, index); // hostname
+        the_host = host.substring(0, index); // hostname
         host.remove(0, (index + 1)); // remove hostname + :
         _port = host.toInt(); // get port
     } else {
-        _host = host;
+        the_host = host;
     }
+    if(_host != the_host && connected()){
+        log_d("switching host from '%s' to '%s'. disconnecting first", _host.c_str(), the_host.c_str());
+        _canReuse = false;
+        disconnect(true);
+    }
+    _host = the_host;
     _uri = url;
-    log_d("host: %s port: %d url: %s", _host.c_str(), _port, _uri.c_str());
+    log_d("protocol: %s, host: %s port: %d url: %s", _protocol.c_str(), _host.c_str(), _port, _uri.c_str());
     return true;
 }
 
@@ -365,19 +382,19 @@ void HTTPClient::disconnect(bool preserveClient)
         }
 
         if(_reuse && _canReuse) {
-            log_d("tcp keep open for reuse\n");
+            log_d("tcp keep open for reuse");
         } else {
-            log_d("tcp stop\n");
+            log_d("tcp stop");
             _client->stop();
             if(!preserveClient) {
                 _client = nullptr;
-            }
 #ifdef HTTPCLIENT_1_1_COMPATIBLE
-            if(_tcpDeprecated) {
-                _transportTraits.reset(nullptr);
-                _tcpDeprecated.reset(nullptr);
-            }
+                if(_tcpDeprecated) {
+                    _transportTraits.reset(nullptr);
+                    _tcpDeprecated.reset(nullptr);
+                }
 #endif
+            }
         }
     } else {
         log_d("tcp is closed\n");
@@ -583,7 +600,7 @@ int HTTPClient::sendRequest(const char * type, uint8_t * payload, size_t size)
         }
 
         code = handleHeaderResponse();
-        Serial.printf("sendRequest code=%d\n", code);
+        log_d("sendRequest code=%d\n", code);
 
         // Handle redirections as stated in RFC document:
         // https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html
@@ -919,21 +936,19 @@ int HTTPClient::writeToStream(Stream * stream)
  */
 String HTTPClient::getString(void)
 {
-    StreamString sstring;
-
-    if(_size > 0) {
-        // try to reserve needed memmory
-        if(!sstring.reserve((_size + 1))) {
+    // _size can be -1 when Server sends no Content-Length header
+    if(_size > 0 || _size == -1) {
+        StreamString sstring;
+        // try to reserve needed memory (noop if _size == -1)
+        if(sstring.reserve((_size + 1))) {
+            writeToStream(&sstring);
+            return sstring;            
+        } else {
             log_d("not enough memory to reserve a string! need: %d", (_size + 1));
-            return "";
         }
     }
-    else {
-        return "";
-    }
 
-    writeToStream(&sstring);
-    return sstring;
+    return "";
 }
 
 /**
@@ -1188,6 +1203,7 @@ int HTTPClient::handleHeaderResponse()
 
     _transferEncoding = HTTPC_TE_IDENTITY;
     unsigned long lastDataTime = millis();
+    bool firstLine = true;
 
     while(connected()) {
         size_t len = _client->available();
@@ -1199,11 +1215,13 @@ int HTTPClient::handleHeaderResponse()
 
             log_v("RX: '%s'", headerLine.c_str());
 
-            if(headerLine.startsWith("HTTP/1.")) {
-                if(_canReuse) {
+            if(firstLine) {
+		firstLine = false;
+                if(_canReuse && headerLine.startsWith("HTTP/1.")) {
                     _canReuse = (headerLine[sizeof "HTTP/1." - 1] != '0');
                 }
-                _returnCode = headerLine.substring(9, headerLine.indexOf(' ', 9)).toInt();
+                int codePos = headerLine.indexOf(' ') + 1;
+                _returnCode = headerLine.substring(codePos, headerLine.indexOf(' ', codePos)).toInt();
             } else if(headerLine.indexOf(':')) {
                 String headerName = headerLine.substring(0, headerLine.indexOf(':'));
                 String headerValue = headerLine.substring(headerLine.indexOf(':') + 1);
@@ -1313,9 +1331,9 @@ int HTTPClient::writeToStreamDataBlock(Stream * stream, int size)
                     readBytes = buff_size;
                 }
 		    
-		// stop if no more reading    
-		if (readBytes == 0)
-			break;
+        		// stop if no more reading    
+        		if (readBytes == 0)
+        			break;
 
                 // read data
                 int bytesRead = _client->readBytes(buff, readBytes);
@@ -1441,8 +1459,10 @@ bool HTTPClient::setURL(const String& url)
         _port = (_protocol == "https" ? 443 : 80);
     }
 
-    // disconnect but preserve _client (clear _canReuse so disconnect will close the connection)
-    _canReuse = false;
+    // disconnect but preserve _client. 
+    // Also have to keep the connection otherwise it will free some of the memory used by _client 
+    // and will blow up later when trying to do _client->available() or similar
+    _canReuse = true;
     disconnect(true);
     return beginInternal(url, _protocol.c_str());
 }

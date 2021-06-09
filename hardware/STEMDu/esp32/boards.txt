@@ -1,4 +1,5 @@
 menu.UploadSpeed=Upload Speed
+menu.SerialMode=Serial Connected To
 menu.CPUFreq=CPU Frequency
 menu.FlashFreq=Flash Frequency
 menu.FlashMode=Flash Mode
@@ -7,6 +8,10 @@ menu.PartitionScheme=Partition Scheme
 menu.DebugLevel=Core Debug Level
 menu.PSRAM=PSRAM
 menu.Revision=Board Revision
+menu.LORAWAN_REGION=LoRaWan Region
+menu.LoRaWanDebugLevel=LoRaWan Debug Level
+menu.LoopCore=Arduino Runs On
+menu.EventsCore=Events Run On
 
 ##############################################################
 
@@ -15,11 +20,15 @@ esp32stemdu.name=STEM Du RDC-ESP32 R1
 esp32stemdu.upload.tool=esptool_py
 esp32stemdu.upload.maximum_size=1310720
 esp32stemdu.upload.maximum_data_size=327680
-esp32stemdu.upload.wait_for_upload_port=true
+esp32stemdu.upload.flags=
+esp32stemdu.upload.extra_flags=
 
 esp32stemdu.serial.disableDTR=true
 esp32stemdu.serial.disableRTS=true
 
+esp32stemdu.build.tarch=xtensa
+esp32stemdu.build.bootloader_addr=0x1000
+esp32stemdu.build.target=esp32
 esp32stemdu.build.mcu=esp32
 esp32stemdu.build.core=esp32
 esp32stemdu.build.variant=esp32stemdu_r1
@@ -32,11 +41,15 @@ esp32stemdu.build.flash_mode=dio
 esp32stemdu.build.boot=dio
 esp32stemdu.build.partitions=default
 esp32stemdu.build.defines=
+esp32stemdu.build.loop_core=
+esp32stemdu.build.event_core=
 
 esp32stemdu.menu.PSRAM.disabled=Disabled
 esp32stemdu.menu.PSRAM.disabled.build.defines=
+esp32stemdu.menu.PSRAM.disabled.build.extra_libs=
 esp32stemdu.menu.PSRAM.enabled=Enabled
-esp32stemdu.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue
+esp32stemdu.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue -mfix-esp32-psram-cache-strategy=memw
+esp32stemdu.menu.PSRAM.enabled.build.extra_libs=
 
 esp32stemdu.menu.PartitionScheme.default=Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
 esp32stemdu.menu.PartitionScheme.default.build.partitions=default
@@ -71,6 +84,9 @@ esp32stemdu.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
 esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9MB FATFS)
 esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
 esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+esp32stemdu.menu.PartitionScheme.rainmaker=RainMaker
+esp32stemdu.menu.PartitionScheme.rainmaker.build.partitions=rainmaker
+esp32stemdu.menu.PartitionScheme.rainmaker.upload.maximum_size=3145728
 
 esp32stemdu.menu.CPUFreq.240=240MHz (WiFi/BT)
 esp32stemdu.menu.CPUFreq.240.build.f_cpu=240000000L
@@ -133,6 +149,16 @@ esp32stemdu.menu.UploadSpeed.460800.upload.speed=460800
 esp32stemdu.menu.UploadSpeed.512000.windows=512000
 esp32stemdu.menu.UploadSpeed.512000.upload.speed=512000
 
+esp32stemdu.menu.LoopCore.1=Core 1
+esp32stemdu.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+esp32stemdu.menu.LoopCore.0=Core 0
+esp32stemdu.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+esp32stemdu.menu.EventsCore.1=Core 1
+esp32stemdu.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+esp32stemdu.menu.EventsCore.0=Core 0
+esp32stemdu.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
 esp32stemdu.menu.DebugLevel.none=None
 esp32stemdu.menu.DebugLevel.none.build.code_debug=0
 esp32stemdu.menu.DebugLevel.error=Error
@@ -153,11 +179,15 @@ esp32stemdu_r2.name=STEM Du RDC-ESP32 R2
 esp32stemdu_r2.upload.tool=esptool_py
 esp32stemdu_r2.upload.maximum_size=1310720
 esp32stemdu_r2.upload.maximum_data_size=327680
-esp32stemdu_r2.upload.wait_for_upload_port=true
+esp32stemdu_r2.upload.flags=
+esp32stemdu_r2.upload.extra_flags=
 
 esp32stemdu_r2.serial.disableDTR=true
 esp32stemdu_r2.serial.disableRTS=true
 
+esp32stemdu_r2.build.tarch=xtensa
+esp32stemdu_r2.build.bootloader_addr=0x1000
+esp32stemdu_r2.build.target=esp32
 esp32stemdu_r2.build.mcu=esp32
 esp32stemdu_r2.build.core=esp32
 esp32stemdu_r2.build.variant=esp32stemdu_r2
@@ -170,11 +200,15 @@ esp32stemdu_r2.build.flash_mode=dio
 esp32stemdu_r2.build.boot=dio
 esp32stemdu_r2.build.partitions=default
 esp32stemdu_r2.build.defines=
+esp32stemdu_r2.build.loop_core=
+esp32stemdu_r2.build.event_core=
 
 esp32stemdu_r2.menu.PSRAM.disabled=Disabled
 esp32stemdu_r2.menu.PSRAM.disabled.build.defines=
+esp32stemdu_r2.menu.PSRAM.disabled.build.extra_libs=
 esp32stemdu_r2.menu.PSRAM.enabled=Enabled
-esp32stemdu_r2.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue
+esp32stemdu_r2.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue -mfix-esp32-psram-cache-strategy=memw
+esp32stemdu_r2.menu.PSRAM.enabled.build.extra_libs=
 
 esp32stemdu_r2.menu.PartitionScheme.default=Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
 esp32stemdu_r2.menu.PartitionScheme.default.build.partitions=default
@@ -209,6 +243,9 @@ esp32stemdu_r2.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
 esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9MB FATFS)
 esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
 esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+esp32stemdu_r2.menu.PartitionScheme.rainmaker=RainMaker
+esp32stemdu_r2.menu.PartitionScheme.rainmaker.build.partitions=rainmaker
+esp32stemdu_r2.menu.PartitionScheme.rainmaker.upload.maximum_size=3145728
 
 esp32stemdu_r2.menu.CPUFreq.240=240MHz (WiFi/BT)
 esp32stemdu_r2.menu.CPUFreq.240.build.f_cpu=240000000L
@@ -270,6 +307,16 @@ esp32stemdu_r2.menu.UploadSpeed.460800.macosx=460800
 esp32stemdu_r2.menu.UploadSpeed.460800.upload.speed=460800
 esp32stemdu_r2.menu.UploadSpeed.512000.windows=512000
 esp32stemdu_r2.menu.UploadSpeed.512000.upload.speed=512000
+
+esp32stemdu_r2.menu.LoopCore.1=Core 1
+esp32stemdu_r2.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+esp32stemdu_r2.menu.LoopCore.0=Core 0
+esp32stemdu_r2.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+esp32stemdu_r2.menu.EventsCore.1=Core 1
+esp32stemdu_r2.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+esp32stemdu_r2.menu.EventsCore.0=Core 0
+esp32stemdu_r2.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
 
 esp32stemdu_r2.menu.DebugLevel.none=None
 esp32stemdu_r2.menu.DebugLevel.none.build.code_debug=0
