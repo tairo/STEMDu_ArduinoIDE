@@ -66,7 +66,6 @@ public:
     size_t      position() const override;
     size_t      size() const override;
     void        close() override;
-    const char* path() const override;
     const char* name() const override;
     time_t getLastWrite()  override;
     boolean     isDirectory(void) override;

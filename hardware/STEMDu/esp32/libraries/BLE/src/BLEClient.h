@@ -9,7 +9,7 @@
 #define MAIN_BLEDEVICE_H_
 
 #include "sdkconfig.h"
-#if defined(CONFIG_BLUEDROID_ENABLED)
+#if defined(CONFIG_BT_ENABLED)
 
 #include <esp_gattc_api.h>
 #include <string.h>
@@ -57,8 +57,7 @@ public:
 	uint16_t                                   getConnId();
 	esp_gatt_if_t                              getGattcIf();
 	uint16_t								   getMTU();
-	bool 											 setMTU(uint16_t mtu);
-	
+
 uint16_t m_appId;
 private:
 	friend class BLEDevice;
@@ -100,5 +99,5 @@ public:
 	virtual void onDisconnect(BLEClient *pClient) = 0;
 };
 
-#endif // CONFIG_BLUEDROID_ENABLED
+#endif // CONFIG_BT_ENABLED
 #endif /* MAIN_BLEDEVICE_H_ */

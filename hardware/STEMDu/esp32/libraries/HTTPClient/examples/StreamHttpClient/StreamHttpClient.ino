@@ -56,7 +56,7 @@ void loop() {
             // file found at server
             if(httpCode == HTTP_CODE_OK) {
 
-                // get length of document (is -1 when Server sends no Content-Length header)
+                // get lenght of document (is -1 when Server sends no Content-Length header)
                 int len = http.getSize();
 
                 // create buffer for read
