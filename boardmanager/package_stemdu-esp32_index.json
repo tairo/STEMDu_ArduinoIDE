@@ -12,12 +12,12 @@
         {
           "name": "STEM Du ESP32",
           "architecture": "esp32",
-          "version": "1.0",
+          "version": "1.0.0",
           "category": "ESP32",
           "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.0/stemdu-esp32-v1.0.zip",
           "archiveFileName": "stemdu-esp32-v1.0.zip",
-          "checksum": "SHA-256:cba039a1066260aeb731186c84b6133a483fda15e6a3e031a4f90877a66f5319",
-          "size": "51173380",
+          "checksum": "SHA-256:20af38b2e8d2789edb5fa02d7c3b072931be80ef1c99b3a55e4828887c826923",
+          "size": "52869505",
           "help": {
             "online": ""
           },

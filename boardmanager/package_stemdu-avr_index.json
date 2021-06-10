@@ -1,0 +1,35 @@
+{
+  "packages": [
+    {
+      "name": "stemdu-avr",
+      "maintainer": "Tairo Nomura",
+      "websiteURL": "https://github.com/tairo/STEMDu_ArduinoIDE",
+      "email": "tairo_nomura@mac.com",
+      "help": {
+        "online": "http://neo.stem-edulab.org/"
+      },
+      "platforms": [
+        {
+          "name": "STEM Du AVR",
+          "architecture": "avr",
+          "version": "1.0.0",
+          "category": "Contributed",
+          "help": {
+            "online": ""
+          },
+          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.0/stemdu-avr-v1.0.zip",
+          "archiveFileName": "stemdu-avr-v1.0.zip",
+          "checksum": "SHA-256:e8c79ed07cd9a91d958df323da952ca859ae66bc34a7d7f8b9a48ad5e88611a8",
+          "size": "6578082",
+          "boards": [
+            {"name": "STEM Du 102"},
+            {"name": "STEM Du 103"},
+            {"name": "STEM Du 104"}
+          ],
+          "toolsDependencies": []
+        }
+      ],
+      "tools": []
+    }
+  ]
+}
