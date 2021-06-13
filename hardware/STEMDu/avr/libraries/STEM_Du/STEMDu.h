@@ -66,12 +66,10 @@
 #else //RDC_103 or upper
 
 #define HAS_ONBBOARD_DISTANCE 9
-#define HAS_MPU6050 8
 
 #if STEMDU >= RDC_104
 
 #define HAS_I2C_LCD 4
-#undef HAS_MPU6050
 
 #else
 
@@ -106,7 +104,11 @@
 #if defined(HAS_ONBBOARD_DISTANCE)
 #define BUILTIN_DISTANCE_BUFFER_SIZE 45     // use an odd number
 #define BUILTIN_DISTANCE_PWM 218
+#if STEMDU < RDC_ESP32
 #define P_IRLED  11
+#else
+#define P_IRLED  23
+#endif
 #endif
 
 #if defined(HAS_SPI_LCD)
@@ -171,6 +173,8 @@
 #endif
 #endif
 #endif
+#endif
+
 #if STEMDU == JRTA_1
 // Only JRTA-1
 #define P_M3IN1 10
@@ -211,7 +215,7 @@
 #endif
 #endif
 #endif
-#endif
+
 
 ////////////////////////////////////////////////////////
 
@@ -249,7 +253,7 @@
 
 #define P_RESISTA A6 //dummy
 #define P_RESISTB A7 //dummy
-#define P_RESISTC A4 //pull up
+#define P_RESISTC A4 //pull up;;;;;;pp
 #define P_RESISTD A5 //dummy
 #endif
 #endif

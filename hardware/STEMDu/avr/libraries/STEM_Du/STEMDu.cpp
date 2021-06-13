@@ -792,8 +792,10 @@ void STEMDu::led(bool val){
 	digitalWrite(P_LED, val);
 }
 
-#if STEMDU < RDC_ESP32
 void STEMDu::led(int val){
+#if STEMDU < RDC_ESP32
 	analogWrite(P_LED, val);
-}
+#else
+	ledcAnalogWrite(LEDC_CHANNEL_LED, val);
 #endif
+}
