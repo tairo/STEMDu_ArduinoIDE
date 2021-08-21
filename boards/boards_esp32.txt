@@ -1,0 +1,332 @@
+menu.UploadSpeed=Upload Speed
+menu.SerialMode=Serial Connected To
+menu.CPUFreq=CPU Frequency
+menu.FlashFreq=Flash Frequency
+menu.FlashMode=Flash Mode
+menu.FlashSize=Flash Size
+menu.PartitionScheme=Partition Scheme
+menu.DebugLevel=Core Debug Level
+menu.PSRAM=PSRAM
+menu.Revision=Board Revision
+menu.LORAWAN_REGION=LoRaWan Region
+menu.LoRaWanDebugLevel=LoRaWan Debug Level
+menu.LoopCore=Arduino Runs On
+menu.EventsCore=Events Run On
+
+##############################################################
+
+esp32stemdu.name=STEM Du RDC-ESP32 R1
+
+esp32stemdu.upload.tool=esptool_py
+esp32stemdu.upload.maximum_size=1310720
+esp32stemdu.upload.maximum_data_size=327680
+esp32stemdu.upload.flags=
+esp32stemdu.upload.extra_flags=
+
+esp32stemdu.serial.disableDTR=true
+esp32stemdu.serial.disableRTS=true
+
+esp32stemdu.build.tarch=xtensa
+esp32stemdu.build.bootloader_addr=0x1000
+esp32stemdu.build.target=esp32
+esp32stemdu.build.mcu=esp32
+esp32stemdu.build.core=esp32
+esp32stemdu.build.variant=esp32stemdu_r1
+esp32stemdu.build.board=ESP32_DEV
+
+esp32stemdu.build.f_cpu=240000000L
+esp32stemdu.build.flash_size=4MB
+esp32stemdu.build.flash_freq=40m
+esp32stemdu.build.flash_mode=dio
+esp32stemdu.build.boot=dio
+esp32stemdu.build.partitions=default
+esp32stemdu.build.defines=
+esp32stemdu.build.loop_core=
+esp32stemdu.build.event_core=
+
+esp32stemdu.menu.PSRAM.disabled=Disabled
+esp32stemdu.menu.PSRAM.disabled.build.defines=
+esp32stemdu.menu.PSRAM.disabled.build.extra_libs=
+esp32stemdu.menu.PSRAM.enabled=Enabled
+esp32stemdu.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue -mfix-esp32-psram-cache-strategy=memw
+esp32stemdu.menu.PSRAM.enabled.build.extra_libs=
+
+esp32stemdu.menu.PartitionScheme.default=Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
+esp32stemdu.menu.PartitionScheme.default.build.partitions=default
+esp32stemdu.menu.PartitionScheme.defaultffat=Default 4MB with ffat (1.2MB APP/1.5MB FATFS)
+esp32stemdu.menu.PartitionScheme.defaultffat.build.partitions=default_ffat
+esp32stemdu.menu.PartitionScheme.default_8MB=8M Flash (3MB APP/1.5MB FAT)
+esp32stemdu.menu.PartitionScheme.default_8MB.build.partitions=default_8MB
+esp32stemdu.menu.PartitionScheme.default_8MB.upload.maximum_size=3342336
+esp32stemdu.menu.PartitionScheme.minimal=Minimal (1.3MB APP/700KB SPIFFS)
+esp32stemdu.menu.PartitionScheme.minimal.build.partitions=minimal
+esp32stemdu.menu.PartitionScheme.no_ota=No OTA (2MB APP/2MB SPIFFS)
+esp32stemdu.menu.PartitionScheme.no_ota.build.partitions=no_ota
+esp32stemdu.menu.PartitionScheme.no_ota.upload.maximum_size=2097152
+esp32stemdu.menu.PartitionScheme.noota_3g=No OTA (1MB APP/3MB SPIFFS)
+esp32stemdu.menu.PartitionScheme.noota_3g.build.partitions=noota_3g
+esp32stemdu.menu.PartitionScheme.noota_3g.upload.maximum_size=1048576
+esp32stemdu.menu.PartitionScheme.noota_ffat=No OTA (2MB APP/2MB FATFS)
+esp32stemdu.menu.PartitionScheme.noota_ffat.build.partitions=noota_ffat
+esp32stemdu.menu.PartitionScheme.noota_ffat.upload.maximum_size=2097152
+esp32stemdu.menu.PartitionScheme.noota_3gffat=No OTA (1MB APP/3MB FATFS)
+esp32stemdu.menu.PartitionScheme.noota_3gffat.build.partitions=noota_3gffat
+esp32stemdu.menu.PartitionScheme.noota_3gffat.upload.maximum_size=1048576
+esp32stemdu.menu.PartitionScheme.huge_app=Huge APP (3MB No OTA/1MB SPIFFS)
+esp32stemdu.menu.PartitionScheme.huge_app.build.partitions=huge_app
+esp32stemdu.menu.PartitionScheme.huge_app.upload.maximum_size=3145728
+esp32stemdu.menu.PartitionScheme.min_spiffs=Minimal SPIFFS (1.9MB APP with OTA/190KB SPIFFS)
+esp32stemdu.menu.PartitionScheme.min_spiffs.build.partitions=min_spiffs
+esp32stemdu.menu.PartitionScheme.min_spiffs.upload.maximum_size=1966080
+esp32stemdu.menu.PartitionScheme.fatflash=16M Flash (2MB APP/12.5MB FAT)
+esp32stemdu.menu.PartitionScheme.fatflash.build.partitions=ffat
+esp32stemdu.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
+esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9MB FATFS)
+esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
+esp32stemdu.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+esp32stemdu.menu.PartitionScheme.rainmaker=RainMaker
+esp32stemdu.menu.PartitionScheme.rainmaker.build.partitions=rainmaker
+esp32stemdu.menu.PartitionScheme.rainmaker.upload.maximum_size=3145728
+
+esp32stemdu.menu.CPUFreq.240=240MHz (WiFi/BT)
+esp32stemdu.menu.CPUFreq.240.build.f_cpu=240000000L
+esp32stemdu.menu.CPUFreq.160=160MHz (WiFi/BT)
+esp32stemdu.menu.CPUFreq.160.build.f_cpu=160000000L
+esp32stemdu.menu.CPUFreq.80=80MHz (WiFi/BT)
+esp32stemdu.menu.CPUFreq.80.build.f_cpu=80000000L
+esp32stemdu.menu.CPUFreq.40=40MHz (40MHz XTAL)
+esp32stemdu.menu.CPUFreq.40.build.f_cpu=40000000L
+esp32stemdu.menu.CPUFreq.26=26MHz (26MHz XTAL)
+esp32stemdu.menu.CPUFreq.26.build.f_cpu=26000000L
+esp32stemdu.menu.CPUFreq.20=20MHz (40MHz XTAL)
+esp32stemdu.menu.CPUFreq.20.build.f_cpu=20000000L
+esp32stemdu.menu.CPUFreq.13=13MHz (26MHz XTAL)
+esp32stemdu.menu.CPUFreq.13.build.f_cpu=13000000L
+esp32stemdu.menu.CPUFreq.10=10MHz (40MHz XTAL)
+esp32stemdu.menu.CPUFreq.10.build.f_cpu=10000000L
+
+esp32stemdu.menu.FlashMode.qio=QIO
+esp32stemdu.menu.FlashMode.qio.build.flash_mode=dio
+esp32stemdu.menu.FlashMode.qio.build.boot=qio
+esp32stemdu.menu.FlashMode.dio=DIO
+esp32stemdu.menu.FlashMode.dio.build.flash_mode=dio
+esp32stemdu.menu.FlashMode.dio.build.boot=dio
+esp32stemdu.menu.FlashMode.qout=QOUT
+esp32stemdu.menu.FlashMode.qout.build.flash_mode=dout
+esp32stemdu.menu.FlashMode.qout.build.boot=qout
+esp32stemdu.menu.FlashMode.dout=DOUT
+esp32stemdu.menu.FlashMode.dout.build.flash_mode=dout
+esp32stemdu.menu.FlashMode.dout.build.boot=dout
+
+esp32stemdu.menu.FlashFreq.80=80MHz
+esp32stemdu.menu.FlashFreq.80.build.flash_freq=80m
+esp32stemdu.menu.FlashFreq.40=40MHz
+esp32stemdu.menu.FlashFreq.40.build.flash_freq=40m
+
+esp32stemdu.menu.FlashSize.4M=4MB (32Mb)
+esp32stemdu.menu.FlashSize.4M.build.flash_size=4MB
+esp32stemdu.menu.FlashSize.8M=8MB (64Mb)
+esp32stemdu.menu.FlashSize.8M.build.flash_size=8MB
+esp32stemdu.menu.FlashSize.8M.build.partitions=default_8MB
+esp32stemdu.menu.FlashSize.2M=2MB (16Mb)
+esp32stemdu.menu.FlashSize.2M.build.flash_size=2MB
+esp32stemdu.menu.FlashSize.2M.build.partitions=minimal
+esp32stemdu.menu.FlashSize.16M=16MB (128Mb)
+esp32stemdu.menu.FlashSize.16M.build.flash_size=16MB
+
+esp32stemdu.menu.UploadSpeed.921600=921600
+esp32stemdu.menu.UploadSpeed.921600.upload.speed=921600
+esp32stemdu.menu.UploadSpeed.115200=115200
+esp32stemdu.menu.UploadSpeed.115200.upload.speed=115200
+esp32stemdu.menu.UploadSpeed.256000.windows=256000
+esp32stemdu.menu.UploadSpeed.256000.upload.speed=256000
+esp32stemdu.menu.UploadSpeed.230400.windows.upload.speed=256000
+esp32stemdu.menu.UploadSpeed.230400=230400
+esp32stemdu.menu.UploadSpeed.230400.upload.speed=230400
+esp32stemdu.menu.UploadSpeed.460800.linux=460800
+esp32stemdu.menu.UploadSpeed.460800.macosx=460800
+esp32stemdu.menu.UploadSpeed.460800.upload.speed=460800
+esp32stemdu.menu.UploadSpeed.512000.windows=512000
+esp32stemdu.menu.UploadSpeed.512000.upload.speed=512000
+
+esp32stemdu.menu.LoopCore.1=Core 1
+esp32stemdu.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+esp32stemdu.menu.LoopCore.0=Core 0
+esp32stemdu.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+esp32stemdu.menu.EventsCore.1=Core 1
+esp32stemdu.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+esp32stemdu.menu.EventsCore.0=Core 0
+esp32stemdu.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+esp32stemdu.menu.DebugLevel.none=None
+esp32stemdu.menu.DebugLevel.none.build.code_debug=0
+esp32stemdu.menu.DebugLevel.error=Error
+esp32stemdu.menu.DebugLevel.error.build.code_debug=1
+esp32stemdu.menu.DebugLevel.warn=Warn
+esp32stemdu.menu.DebugLevel.warn.build.code_debug=2
+esp32stemdu.menu.DebugLevel.info=Info
+esp32stemdu.menu.DebugLevel.info.build.code_debug=3
+esp32stemdu.menu.DebugLevel.debug=Debug
+esp32stemdu.menu.DebugLevel.debug.build.code_debug=4
+esp32stemdu.menu.DebugLevel.verbose=Verbose
+esp32stemdu.menu.DebugLevel.verbose.build.code_debug=5
+
+##############################################################
+
+esp32stemdu_r2.name=STEM Du RDC-ESP32 R2
+
+esp32stemdu_r2.upload.tool=esptool_py
+esp32stemdu_r2.upload.maximum_size=1310720
+esp32stemdu_r2.upload.maximum_data_size=327680
+esp32stemdu_r2.upload.flags=
+esp32stemdu_r2.upload.extra_flags=
+
+esp32stemdu_r2.serial.disableDTR=true
+esp32stemdu_r2.serial.disableRTS=true
+
+esp32stemdu_r2.build.tarch=xtensa
+esp32stemdu_r2.build.bootloader_addr=0x1000
+esp32stemdu_r2.build.target=esp32
+esp32stemdu_r2.build.mcu=esp32
+esp32stemdu_r2.build.core=esp32
+esp32stemdu_r2.build.variant=esp32stemdu_r2
+esp32stemdu_r2.build.board=ESP32_DEV
+
+esp32stemdu_r2.build.f_cpu=240000000L
+esp32stemdu_r2.build.flash_size=4MB
+esp32stemdu_r2.build.flash_freq=40m
+esp32stemdu_r2.build.flash_mode=dio
+esp32stemdu_r2.build.boot=dio
+esp32stemdu_r2.build.partitions=default
+esp32stemdu_r2.build.defines=
+esp32stemdu_r2.build.loop_core=
+esp32stemdu_r2.build.event_core=
+
+esp32stemdu_r2.menu.PSRAM.disabled=Disabled
+esp32stemdu_r2.menu.PSRAM.disabled.build.defines=
+esp32stemdu_r2.menu.PSRAM.disabled.build.extra_libs=
+esp32stemdu_r2.menu.PSRAM.enabled=Enabled
+esp32stemdu_r2.menu.PSRAM.enabled.build.defines=-DBOARD_HAS_PSRAM -mfix-esp32-psram-cache-issue -mfix-esp32-psram-cache-strategy=memw
+esp32stemdu_r2.menu.PSRAM.enabled.build.extra_libs=
+
+esp32stemdu_r2.menu.PartitionScheme.default=Default 4MB with spiffs (1.2MB APP/1.5MB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.default.build.partitions=default
+esp32stemdu_r2.menu.PartitionScheme.defaultffat=Default 4MB with ffat (1.2MB APP/1.5MB FATFS)
+esp32stemdu_r2.menu.PartitionScheme.defaultffat.build.partitions=default_ffat
+esp32stemdu_r2.menu.PartitionScheme.default_8MB=8M Flash (3MB APP/1.5MB FAT)
+esp32stemdu_r2.menu.PartitionScheme.default_8MB.build.partitions=default_8MB
+esp32stemdu_r2.menu.PartitionScheme.default_8MB.upload.maximum_size=3342336
+esp32stemdu_r2.menu.PartitionScheme.minimal=Minimal (1.3MB APP/700KB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.minimal.build.partitions=minimal
+esp32stemdu_r2.menu.PartitionScheme.no_ota=No OTA (2MB APP/2MB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.no_ota.build.partitions=no_ota
+esp32stemdu_r2.menu.PartitionScheme.no_ota.upload.maximum_size=2097152
+esp32stemdu_r2.menu.PartitionScheme.noota_3g=No OTA (1MB APP/3MB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.noota_3g.build.partitions=noota_3g
+esp32stemdu_r2.menu.PartitionScheme.noota_3g.upload.maximum_size=1048576
+esp32stemdu_r2.menu.PartitionScheme.noota_ffat=No OTA (2MB APP/2MB FATFS)
+esp32stemdu_r2.menu.PartitionScheme.noota_ffat.build.partitions=noota_ffat
+esp32stemdu_r2.menu.PartitionScheme.noota_ffat.upload.maximum_size=2097152
+esp32stemdu_r2.menu.PartitionScheme.noota_3gffat=No OTA (1MB APP/3MB FATFS)
+esp32stemdu_r2.menu.PartitionScheme.noota_3gffat.build.partitions=noota_3gffat
+esp32stemdu_r2.menu.PartitionScheme.noota_3gffat.upload.maximum_size=1048576
+esp32stemdu_r2.menu.PartitionScheme.huge_app=Huge APP (3MB No OTA/1MB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.huge_app.build.partitions=huge_app
+esp32stemdu_r2.menu.PartitionScheme.huge_app.upload.maximum_size=3145728
+esp32stemdu_r2.menu.PartitionScheme.min_spiffs=Minimal SPIFFS (1.9MB APP with OTA/190KB SPIFFS)
+esp32stemdu_r2.menu.PartitionScheme.min_spiffs.build.partitions=min_spiffs
+esp32stemdu_r2.menu.PartitionScheme.min_spiffs.upload.maximum_size=1966080
+esp32stemdu_r2.menu.PartitionScheme.fatflash=16M Flash (2MB APP/12.5MB FAT)
+esp32stemdu_r2.menu.PartitionScheme.fatflash.build.partitions=ffat
+esp32stemdu_r2.menu.PartitionScheme.fatflash.upload.maximum_size=2097152
+esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB=16M Flash (3MB APP/9MB FATFS)
+esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB.build.partitions=app3M_fat9M_16MB
+esp32stemdu_r2.menu.PartitionScheme.app3M_fat9M_16MB.upload.maximum_size=3145728
+esp32stemdu_r2.menu.PartitionScheme.rainmaker=RainMaker
+esp32stemdu_r2.menu.PartitionScheme.rainmaker.build.partitions=rainmaker
+esp32stemdu_r2.menu.PartitionScheme.rainmaker.upload.maximum_size=3145728
+
+esp32stemdu_r2.menu.CPUFreq.240=240MHz (WiFi/BT)
+esp32stemdu_r2.menu.CPUFreq.240.build.f_cpu=240000000L
+esp32stemdu_r2.menu.CPUFreq.160=160MHz (WiFi/BT)
+esp32stemdu_r2.menu.CPUFreq.160.build.f_cpu=160000000L
+esp32stemdu_r2.menu.CPUFreq.80=80MHz (WiFi/BT)
+esp32stemdu_r2.menu.CPUFreq.80.build.f_cpu=80000000L
+esp32stemdu_r2.menu.CPUFreq.40=40MHz (40MHz XTAL)
+esp32stemdu_r2.menu.CPUFreq.40.build.f_cpu=40000000L
+esp32stemdu_r2.menu.CPUFreq.26=26MHz (26MHz XTAL)
+esp32stemdu_r2.menu.CPUFreq.26.build.f_cpu=26000000L
+esp32stemdu_r2.menu.CPUFreq.20=20MHz (40MHz XTAL)
+esp32stemdu_r2.menu.CPUFreq.20.build.f_cpu=20000000L
+esp32stemdu_r2.menu.CPUFreq.13=13MHz (26MHz XTAL)
+esp32stemdu_r2.menu.CPUFreq.13.build.f_cpu=13000000L
+esp32stemdu_r2.menu.CPUFreq.10=10MHz (40MHz XTAL)
+esp32stemdu_r2.menu.CPUFreq.10.build.f_cpu=10000000L
+
+esp32stemdu_r2.menu.FlashMode.qio=QIO
+esp32stemdu_r2.menu.FlashMode.qio.build.flash_mode=dio
+esp32stemdu_r2.menu.FlashMode.qio.build.boot=qio
+esp32stemdu_r2.menu.FlashMode.dio=DIO
+esp32stemdu_r2.menu.FlashMode.dio.build.flash_mode=dio
+esp32stemdu_r2.menu.FlashMode.dio.build.boot=dio
+esp32stemdu_r2.menu.FlashMode.qout=QOUT
+esp32stemdu_r2.menu.FlashMode.qout.build.flash_mode=dout
+esp32stemdu_r2.menu.FlashMode.qout.build.boot=qout
+esp32stemdu_r2.menu.FlashMode.dout=DOUT
+esp32stemdu_r2.menu.FlashMode.dout.build.flash_mode=dout
+esp32stemdu_r2.menu.FlashMode.dout.build.boot=dout
+
+esp32stemdu_r2.menu.FlashFreq.80=80MHz
+esp32stemdu_r2.menu.FlashFreq.80.build.flash_freq=80m
+esp32stemdu_r2.menu.FlashFreq.40=40MHz
+esp32stemdu_r2.menu.FlashFreq.40.build.flash_freq=40m
+
+esp32stemdu_r2.menu.FlashSize.4M=4MB (32Mb)
+esp32stemdu_r2.menu.FlashSize.4M.build.flash_size=4MB
+esp32stemdu_r2.menu.FlashSize.8M=8MB (64Mb)
+esp32stemdu_r2.menu.FlashSize.8M.build.flash_size=8MB
+esp32stemdu_r2.menu.FlashSize.8M.build.partitions=default_8MB
+esp32stemdu_r2.menu.FlashSize.2M=2MB (16Mb)
+esp32stemdu_r2.menu.FlashSize.2M.build.flash_size=2MB
+esp32stemdu_r2.menu.FlashSize.2M.build.partitions=minimal
+esp32stemdu_r2.menu.FlashSize.16M=16MB (128Mb)
+esp32stemdu_r2.menu.FlashSize.16M.build.flash_size=16MB
+
+esp32stemdu_r2.menu.UploadSpeed.921600=921600
+esp32stemdu_r2.menu.UploadSpeed.921600.upload.speed=921600
+esp32stemdu_r2.menu.UploadSpeed.115200=115200
+esp32stemdu_r2.menu.UploadSpeed.115200.upload.speed=115200
+esp32stemdu_r2.menu.UploadSpeed.256000.windows=256000
+esp32stemdu_r2.menu.UploadSpeed.256000.upload.speed=256000
+esp32stemdu_r2.menu.UploadSpeed.230400.windows.upload.speed=256000
+esp32stemdu_r2.menu.UploadSpeed.230400=230400
+esp32stemdu_r2.menu.UploadSpeed.230400.upload.speed=230400
+esp32stemdu_r2.menu.UploadSpeed.460800.linux=460800
+esp32stemdu_r2.menu.UploadSpeed.460800.macosx=460800
+esp32stemdu_r2.menu.UploadSpeed.460800.upload.speed=460800
+esp32stemdu_r2.menu.UploadSpeed.512000.windows=512000
+esp32stemdu_r2.menu.UploadSpeed.512000.upload.speed=512000
+
+esp32stemdu_r2.menu.LoopCore.1=Core 1
+esp32stemdu_r2.menu.LoopCore.1.build.loop_core=-DARDUINO_RUNNING_CORE=1
+esp32stemdu_r2.menu.LoopCore.0=Core 0
+esp32stemdu_r2.menu.LoopCore.0.build.loop_core=-DARDUINO_RUNNING_CORE=0
+
+esp32stemdu_r2.menu.EventsCore.1=Core 1
+esp32stemdu_r2.menu.EventsCore.1.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=1
+esp32stemdu_r2.menu.EventsCore.0=Core 0
+esp32stemdu_r2.menu.EventsCore.0.build.event_core=-DARDUINO_EVENT_RUNNING_CORE=0
+
+esp32stemdu_r2.menu.DebugLevel.none=None
+esp32stemdu_r2.menu.DebugLevel.none.build.code_debug=0
+esp32stemdu_r2.menu.DebugLevel.error=Error
+esp32stemdu_r2.menu.DebugLevel.error.build.code_debug=1
+esp32stemdu_r2.menu.DebugLevel.warn=Warn
+esp32stemdu_r2.menu.DebugLevel.warn.build.code_debug=2
+esp32stemdu_r2.menu.DebugLevel.info=Info
+esp32stemdu_r2.menu.DebugLevel.info.build.code_debug=3
+esp32stemdu_r2.menu.DebugLevel.debug=Debug
+esp32stemdu_r2.menu.DebugLevel.debug.build.code_debug=4
+esp32stemdu_r2.menu.DebugLevel.verbose=Verbose
+esp32stemdu_r2.menu.DebugLevel.verbose.build.code_debug=5

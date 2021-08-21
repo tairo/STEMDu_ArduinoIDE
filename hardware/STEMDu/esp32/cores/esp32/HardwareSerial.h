@@ -55,7 +55,7 @@ class HardwareSerial: public Stream
 public:
     HardwareSerial(int uart_nr);
 
-    void begin(unsigned long baud, uint32_t config=SERIAL_8N1, int8_t rxPin=-1, int8_t txPin=-1, bool invert=false, unsigned long timeout_ms = 20000UL);
+    void begin(unsigned long baud, uint32_t config=SERIAL_8N1, int8_t rxPin=-1, int8_t txPin=-1, bool invert=false, unsigned long timeout_ms = 20000UL, uint8_t rxfifo_full_thrhd = 112);
     void end();
     void updateBaudRate(unsigned long baud);
     int available(void);
@@ -113,9 +113,20 @@ protected:
 extern void serialEventRun(void) __attribute__((weak));
 
 #if !defined(NO_GLOBAL_INSTANCES) && !defined(NO_GLOBAL_SERIAL)
+#ifndef ARDUINO_USB_CDC_ON_BOOT
+#define ARDUINO_USB_CDC_ON_BOOT 0
+#endif
+#if ARDUINO_USB_CDC_ON_BOOT //Serial used for USB CDC
+#include "USB.h"
+#include "USBCDC.h"
+extern HardwareSerial Serial0;
+#else
 extern HardwareSerial Serial;
+#endif
 extern HardwareSerial Serial1;
+#if CONFIG_IDF_TARGET_ESP32
 extern HardwareSerial Serial2;
+#endif
 #endif
 
 #endif // HardwareSerial_h
