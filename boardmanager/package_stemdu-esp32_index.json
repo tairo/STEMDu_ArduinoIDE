@@ -14,7 +14,7 @@
           "architecture": "esp32",
           "version": "1.1.0",
           "category": "ESP32",
-          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.0/stemdu-esp32-v1.1.0.zip",
+          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.2.0/stemdu-esp32-v1.1.0.zip",
           "archiveFileName": "stemdu-esp32-v1.1.0.zip",
           "checksum": "SHA-256:8d80b5f1af1371ba109baa13f2d8e23a85f19424a50cd03025a93eb6e021c2b3",
           "size": "52407131",
