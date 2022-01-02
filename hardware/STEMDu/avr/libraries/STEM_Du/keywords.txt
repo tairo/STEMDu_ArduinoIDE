@@ -1,0 +1,100 @@
+#######################################
+# Syntax Coloring Map For IRremote
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+STEMDu	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+
+#######################################
+motor	KEYWORD2
+
+move	KEYWORD2
+turn	KEYWORD2
+tank	KEYWORD2
+
+moveM1M2	KEYWORD2
+turnM1M2	KEYWORD2
+tankM1M2	KEYWORD2
+
+moveM3M4	KEYWORD2
+turnM3M4	KEYWORD2
+tankM3M4	KEYWORD2
+
+forwardM1M2	KEYWORD2
+backwardM1M2	KEYWORD2
+leftM1M2	KEYWORD2
+rightM1M2	KEYWORD2
+stopM1M2	KEYWORD2
+brakeM1M2	KEYWORD2
+
+forwardM3M4	KEYWORD2
+backwardM3M4	KEYWORD2
+leftM3M4	KEYWORD2
+rightM3M4	KEYWORD2
+stopM3M4	KEYWORD2
+brakeM3M4	KEYWORD2
+
+forwardM1	KEYWORD2
+forwardM2	KEYWORD2
+forwardM3	KEYWORD2
+forwardM4	KEYWORD2
+backwardM1	KEYWORD2
+backwardM2	KEYWORD2
+backwardM3	KEYWORD2
+backwardM4	KEYWORD2
+stopM1	KEYWORD2
+stopM2	KEYWORD2
+stopM3	KEYWORD2
+stopM4	KEYWORD2
+brakeM1	KEYWORD2
+brakeM2	KEYWORD2
+brakeM3	KEYWORD2
+brakeM4	KEYWORD2
+
+readSound	KEYWORD2
+readLight	KEYWORD2
+readSlider	KEYWORD2
+initPush	KEYWORD2
+readPush	KEYWORD2
+readResistanceA	KEYWORD2
+readResistanceB	KEYWORD2
+readResistanceC	KEYWORD2
+readResistanceD KEYWORD2
+
+initBuiltinDistance	KEYWORD2
+readBuiltinDistance KEYWORD2
+initBuiltinDistanceNoBuffer KEYWORD2
+readBuiltinDistanceNoBuffer KEYWORD2
+
+readPhRef	KEYWORD2
+readPhRef1	KEYWORD2
+readPhRef2	KEYWORD2
+readPhRef3	KEYWORD2
+readPhRef4	KEYWORD2
+
+led	KEYWORD2
+
+initBuiltinDistance         KEYWORD2
+initBuiltinDistanceNoBuffer KEYWORD2
+readBuiltinDistance         KEYWORD2
+readBuiltinDistanceNoBuffer KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+MAX_DIGITAL_PORTS	LITERAL1
+MAX_ANALOG_PORTS	LITERAL1
+
+MOTOR_STOP	LITERAL1
+MOTOR_BRAKE	LITERAL1
+
+MOTOR1	LITERAL1
+MOTOR2	LITERAL1
+MOTOR3	LITERAL1
+MOTOR4	LITERAL1

@@ -12,6 +12,44 @@
         {
           "name": "STEM Du AVR",
           "architecture": "avr",
+          "version": "1.2.0",
+          "category": "Contributed",
+          "help": {
+            "online": ""
+          },
+          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.2.0/stemdu-avr-v1.2.0.zip",
+          "archiveFileName": "stemdu-avr-v1.2.0.zip",
+          "checksum": "SHA-256:6aaa06aa712ac5cd836e1696561f5e899727c46338db51514fdaed5666f3eb9e",
+          "size": "5596551",
+          "boards": [
+            {"name": "STEM Du 102"},
+            {"name": "STEM Du 103"},
+            {"name": "STEM Du 104"}
+          ],
+          "toolsDependencies": []
+        },
+        {
+          "name": "STEM Du AVR",
+          "architecture": "avr",
+          "version": "1.1.0",
+          "category": "Contributed",
+          "help": {
+            "online": ""
+          },
+          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.1/stemdu-avr-v1.1.zip",
+          "archiveFileName": "stemdu-avr-v1.1.zip",
+          "checksum": "SHA-256:44047e3960f8262ec124ab2ceb033bacebcd732a46c73463cf8f1d346af989e0",
+          "size": "6577255",
+          "boards": [
+            {"name": "STEM Du 102"},
+            {"name": "STEM Du 103"},
+            {"name": "STEM Du 104"}
+          ],
+          "toolsDependencies": []
+        },
+        {
+          "name": "STEM Du AVR",
+          "architecture": "avr",
           "version": "1.0.0",
           "category": "Contributed",
           "help": {

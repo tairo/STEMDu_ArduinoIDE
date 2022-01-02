@@ -1,0 +1,42 @@
+#######################################
+# Syntax Coloring Map For LiquidCrystal
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+I2CLiquidCrystal	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+autoscroll	KEYWORD2
+begin	KEYWORD2
+blink	KEYWORD2
+clear	KEYWORD2
+createChar	KEYWORD2
+cursor	KEYWORD2
+display	KEYWORD2
+home	KEYWORD2
+kana	KEYWORD2
+leftToRight	KEYWORD2
+noAutoscroll	KEYWORD2
+noBlink	KEYWORD2
+noCursor	KEYWORD2
+noDisplay	KEYWORD2
+print	KEYWORD2
+rightToLeft	KEYWORD2
+scrollDisplayLeft	KEYWORD2
+scrollDisplayRight	KEYWORD2
+setColor	KEYWORD2
+setColorWhite	KEYWORD2
+setCursor	KEYWORD2
+setPWM	KEYWORD2
+setRGB	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+LCD_GROVE_RGB	LITERAL1
