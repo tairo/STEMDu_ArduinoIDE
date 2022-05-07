@@ -12,44 +12,6 @@
         {
           "name": "STEM Du ESP32",
           "architecture": "esp32",
-          "version": "1.2.0",
-          "category": "ESP32",
-          "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.2.0/stemdu-esp32-v1.2.0.zip",
-          "archiveFileName": "stemdu-esp32-v1.2.0.zip",
-          "checksum": "SHA-256:d82623ee586017a69213ff09d153c8a009b7917ecb9a9773fe9e9f4363331cdc",
-          "size": "52407144",
-          "help": {
-            "online": ""
-          },
-          "boards": [
-            {
-              "name": "STEM Du ESP32 R1"
-            },
-            {
-              "name": "STEM Du ESP32 R2"
-            }
-          ],
-          "toolsDependencies": [
-            {
-              "packager": "stemdu-esp32",
-              "name": "xtensa-esp32-elf-gcc",
-              "version": "1.22.0-97-gc752ad5-5.2.0"
-            },
-            {
-              "packager": "stemdu-esp32",
-              "name": "esptool_py",
-              "version": "3.0.0"
-            },
-            {
-              "packager": "stemdu-esp32",
-              "name": "mkspiffs",
-              "version": "0.2.3"
-            }
-          ]
-        },
-        {
-          "name": "STEM Du ESP32",
-          "architecture": "esp32",
           "version": "1.1.0",
           "category": "ESP32",
           "url": "https://github.com/tairo/STEMDu_ArduinoIDE/releases/download/v1.2.0/stemdu-esp32-v1.1.0.zip",
